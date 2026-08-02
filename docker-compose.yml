@@ -5,7 +5,7 @@ services:
 
   # ── Kerberos KDC ──────────────────────────────────────────────────────────
   kdc:
-    image: ownjoo/mock-kdc:${SMB_MOCK_VERSION:-latest}
+    image: ownjooorg/mock-kdc:${SMB_MOCK_VERSION:-latest}
     build:
       context: docker/kdc
     hostname: kdc
@@ -41,7 +41,7 @@ services:
 
   # ── Samba file server ─────────────────────────────────────────────────────
   samba:
-    image: ownjoo/mock-smb:${SMB_MOCK_VERSION:-latest}
+    image: ownjooorg/mock-smb:${SMB_MOCK_VERSION:-latest}
     build:
       context: docker/samba
     hostname: ${SMB_HOSTNAME:-smbserver.smbtest.local}

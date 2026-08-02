@@ -56,8 +56,8 @@ Both containers are built on [Chainguard Wolfi](https://wolfi.dev/) — a minima
 
 | Container | Image | Role | Ports |
 |-----------|-------|------|-------|
-| `mock-kdc` | `ownjoo/mock-kdc` | MIT Kerberos KDC — issues tickets, writes keytab | 88/tcp+udp, 8088/tcp |
-| `mock-smb` | `ownjoo/mock-smb` | Samba smbd — serves SMB2/3 shares | 445/tcp |
+| `mock-kdc` | `ownjooorg/mock-kdc` | MIT Kerberos KDC — issues tickets, writes keytab | 88/tcp+udp, 8088/tcp |
+| `mock-smb` | `ownjooorg/mock-smb` | Samba smbd — serves SMB2/3 shares | 445/tcp |
 
 Samba waits for the KDC healthcheck (`GET /healthz`) before starting. Port 749 (kadmind) is **not** exposed on the host — it stays inside the Docker network.
 
@@ -287,20 +287,20 @@ All published images are signed and carry an attached SBOM and build provenance 
 cosign verify \
   --certificate-identity-regexp="https://github.com/ownjoo/smb-mock" \
   --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
-  ownjoo/mock-kdc:latest
+  ownjooorg/mock-kdc:latest
 ```
 
 ### Verify build provenance (GitHub)
 
 ```bash
-gh attestation verify oci://ownjoo/mock-kdc:latest \
+gh attestation verify oci://ownjooorg/mock-kdc:latest \
   --owner ownjoo
 ```
 
 ### Fetch the SBOM
 
 ```bash
-cosign download sbom ownjoo/mock-kdc:latest
+cosign download sbom ownjooorg/mock-kdc:latest
 ```
 
 SBOM files (SPDX JSON) are also attached to every [GitHub release](https://github.com/ownjoo/smb-mock/releases).

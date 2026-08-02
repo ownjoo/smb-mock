@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ownjoo/mock-kdc
+          - image: ownjooorg/mock-kdc
             short_desc: "MIT Kerberos KDC for SMB/CIFS integration testing — no Windows DC required"
-          - image: ownjoo/mock-smb
+          - image: ownjooorg/mock-smb
             short_desc: "Samba SMB2/3 file server for integration testing — pairs with mock-kdc"
 
     steps:

@@ -20,10 +20,10 @@ jobs:
         include:
           - service: kdc
             context: docker/kdc
-            image: ownjoo/mock-kdc
+            image: ownjooorg/mock-kdc
           - service: samba
             context: docker/samba
-            image: ownjoo/mock-smb
+            image: ownjooorg/mock-smb
 
     steps:
       - name: Checkout

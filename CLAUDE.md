@@ -91,7 +91,7 @@ Ticket acquisition: prefers host `kinit` (so ccache uses the native GSSAPI libra
 ### CI / publishing
 
 - `ci.yml` — unit tests + Bandit + Hadolint on every push/PR
-- `docker-publish.yml` — builds and pushes `ownjoo/mock-kdc` and `ownjoo/mock-smb` to Docker Hub on `main` push or `v*` tag
+- `docker-publish.yml` — builds and pushes `ownjooorg/mock-kdc` and `ownjooorg/mock-smb` to Docker Hub on `main` push or `v*` tag
 - `codeql.yml` — GitHub SAST, weekly + push/PR to main
 - `trivy.yml` — CVE scan of both images, SARIF → GitHub Security tab
 
