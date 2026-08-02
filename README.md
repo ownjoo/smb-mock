@@ -45,24 +45,26 @@ Default shares: **`testshare`** (read-write) · **`readonly`** (read-only)
 ## Architecture
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│                       docker compose                       │
-│                                                            │
-│  ┌─────────────────────┐     ┌──────────────────────────┐  │
-│  │      mock-kdc       │     │        mock-smb          │  │
-│  │                     │     │                          │  │
-│  │  MIT Kerberos KDC   │     │  Samba smbd              │  │
-│  │  krb5kdc (PID 1)    │     │  SMB2 / SMB3 only        │  │
-│  │  kadmind (bg)       │     │  NTLMv2 + Kerberos +     │  │
-│  │                     │     │  anonymous (configurable)│  │
-│  │  :88   KDC          │     │  :445  file shares       │  │
-│  │  :8088 keytab API   │     │                          │  │
-│  └──────────┬──────────┘     └──────────────────────────┘  │
-│             │                               ▲              │
-│             └── /shared/krb5.keytab ──────►│              │
-│                   (Docker volume)          │              │
-└────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      docker compose                      │
+│                                                          │
+│ ┌──────────────────┐        ┌──────────────────────────┐ │
+│ │     mock-kdc     │        │         mock-smb         │ │
+│ │                  │        │                          │ │
+│ │ MIT Kerberos KDC │        │ Samba smbd               │ │
+│ │ krb5kdc (PID 1)  │        │ SMB2 / SMB3 only         │ │
+│ │ kadmind (bg)     │        │ NTLMv2 + Kerberos +      │ │
+│ │                  │        │ anonymous (configurable) │ │
+│ │ :88   KDC        │        │ :445  file shares        │ │
+│ │ :8088 keytab API │        │                          │ │
+│ └────────┴─────────┘        └────────────┴─────────────┘ │
+│          │                               │               │
+│          └───────────────────────────────┘               │
+│                 /shared/krb5.keytab                      │
+└──────────────────────────────────────────────────────────┘
 ```
+
+Both containers write/read `/shared/krb5.keytab` via a shared Docker volume — the KDC exports it at startup, Samba waits for it before binding port 445.
 
 Both containers are built on [Chainguard Wolfi](https://wolfi.dev/) — a minimal, purpose-built container OS with daily CVE patches and a near-zero known-vulnerability footprint.
 
