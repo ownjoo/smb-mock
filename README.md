@@ -1,10 +1,10 @@
 # smb-mock
 
-[![CI](https://github.com/ownjoo-org/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/ci.yml)
-[![Integration](https://github.com/ownjoo-org/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/integration.yml)
-[![Docker](https://github.com/ownjoo-org/smb-mock/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/docker-publish.yml)
-[![CodeQL](https://github.com/ownjoo-org/smb-mock/actions/workflows/codeql.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/codeql.yml)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ownjoo-org/smb-mock/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ownjoo-org/smb-mock)
+[![CI](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml)
+[![Integration](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml)
+[![Docker](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml)
+[![CodeQL](https://github.com/ownjoo/smb-mock/actions/workflows/codeql.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ownjoo/smb-mock/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ownjoo/smb-mock)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > A self-contained Docker stack — real MIT Kerberos KDC + real Samba file server — purpose-built for integration-testing SMB/CIFS clients **without** a Windows domain controller.
@@ -303,7 +303,7 @@ All published images are signed and carry an attached SBOM and build provenance 
 
 ```bash
 cosign verify \
-  --certificate-identity-regexp="https://github.com/ownjoo-org/smb-mock" \
+  --certificate-identity-regexp="https://github.com/ownjoo/smb-mock" \
   --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
   speedimusmaximus/mock-kdc:latest
 ```
@@ -312,7 +312,7 @@ cosign verify \
 
 ```bash
 gh attestation verify oci://speedimusmaximus/mock-kdc:latest \
-  --owner ownjoo-org
+  --owner ownjoo
 ```
 
 ### Fetch the SBOM
@@ -321,7 +321,7 @@ gh attestation verify oci://speedimusmaximus/mock-kdc:latest \
 cosign download sbom speedimusmaximus/mock-kdc:latest
 ```
 
-SBOM files (SPDX JSON) are also attached to every [GitHub release](https://github.com/ownjoo-org/smb-mock/releases).
+SBOM files (SPDX JSON) are also attached to every [GitHub release](https://github.com/ownjoo/smb-mock/releases).
 
 ### GitHub Actions pinning
 
