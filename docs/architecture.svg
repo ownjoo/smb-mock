@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528.0 372" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace">
+<rect x="0" y="0" width="528.0" height="372" fill="#080d18"/>
+<defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect x="24" y="24" width="480.0" height="324" rx="14" fill="#0b1220" stroke="#1e293b" stroke-width="1.5"/>
+<text x="264.0" y="51" text-anchor="middle" fill="#64748b" font-size="11" letter-spacing="2.5" style="text-transform:uppercase">docker compose</text>
+<rect x="52" y="68" width="157.6" height="176" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+<text x="130.8" y="95" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="700" filter="url(#glow)">mock-kdc</text>
+<text x="70" y="114" fill="#94a3b8" font-size="12.5">MIT Kerberos KDC</text>
+<text x="70" y="133" fill="#94a3b8" font-size="12.5">krb5kdc (PID 1)</text>
+<text x="70" y="152" fill="#94a3b8" font-size="12.5">kadmind <tspan fill="#fb923c">(bg)</tspan></text>
+<text x="70" y="171" fill="#94a3b8" font-size="12.5"></text>
+<text x="70" y="190" fill="#94a3b8" font-size="12.5">:88   KDC</text>
+<text x="70" y="209" fill="#94a3b8" font-size="12.5">:8088 keytab API</text>
+<rect x="257.6" y="68" width="218.39999999999998" height="176" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+<text x="366.8" y="95" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="700" filter="url(#glow)">mock-smb</text>
+<text x="275.6" y="114" fill="#94a3b8" font-size="12.5">Samba smbd</text>
+<text x="275.6" y="133" fill="#94a3b8" font-size="12.5">SMB2 / SMB3 only</text>
+<text x="275.6" y="152" fill="#94a3b8" font-size="12.5">NTLMv2 + Kerberos +</text>
+<text x="275.6" y="171" fill="#94a3b8" font-size="12.5">anonymous (configurable)</text>
+<text x="275.6" y="190" fill="#94a3b8" font-size="12.5">:445  file shares</text>
+<text x="275.6" y="209" fill="#94a3b8" font-size="12.5"></text>
+<line x1="130.8" y1="244" x2="130.8" y2="274" stroke="#334155" stroke-width="1.5"/>
+<line x1="366.8" y1="244" x2="366.8" y2="274" stroke="#334155" stroke-width="1.5"/>
+<line x1="130.8" y1="274" x2="366.8" y2="274" stroke="#334155" stroke-width="1.5"/>
+<circle cx="130.8" cy="274" r="3" fill="#3b82f6" filter="url(#glow)"/>
+<circle cx="366.8" cy="274" r="3" fill="#3b82f6" filter="url(#glow)"/>
+<text x="248.8" y="302" text-anchor="middle" fill="#93c5fd" font-size="12.5" font-weight="600">/shared/krb5.keytab</text>
+<text x="248.8" y="319" text-anchor="middle" fill="#64748b" font-size="10.5">shared Docker volume</text>
+</svg>
