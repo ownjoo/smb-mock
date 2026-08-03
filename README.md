@@ -1,4 +1,5 @@
 # smb-mock
+[![Top language](https://img.shields.io/github/languages/top/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock) [![Stars](https://img.shields.io/github/stars/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/stargazers) [![Forks](https://img.shields.io/github/forks/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/forks) [![Issues](https://img.shields.io/github/issues/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/issues) [![Pull requests](https://img.shields.io/github/issues-pr/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/pulls)
 
 [![CI](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml)
 [![Integration](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml)
