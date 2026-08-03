@@ -1,5 +1,7 @@
 # smb-mock
 
+[![License](https://img.shields.io/github/license/ownjoo/smb-mock)](LICENSE)
+
 [![CI](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml)
 [![Integration](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml)
 [![Docker](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml)
