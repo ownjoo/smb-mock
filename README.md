@@ -1,10 +1,11 @@
 # smb-mock
+[![Top language](https://img.shields.io/github/languages/top/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock) [![Stars](https://img.shields.io/github/stars/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/stargazers) [![Forks](https://img.shields.io/github/forks/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/forks) [![Issues](https://img.shields.io/github/issues/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/issues) [![Pull requests](https://img.shields.io/github/issues-pr/ownjoo/smb-mock)](https://github.com/ownjoo/smb-mock/pulls)
 
-[![CI](https://github.com/ownjoo-org/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/ci.yml)
-[![Integration](https://github.com/ownjoo-org/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/integration.yml)
-[![Docker](https://github.com/ownjoo-org/smb-mock/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/docker-publish.yml)
-[![CodeQL](https://github.com/ownjoo-org/smb-mock/actions/workflows/codeql.yml/badge.svg)](https://github.com/ownjoo-org/smb-mock/actions/workflows/codeql.yml)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ownjoo-org/smb-mock/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ownjoo-org/smb-mock)
+[![CI](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/ci.yml)
+[![Integration](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/integration.yml)
+[![Docker](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/docker-publish.yml)
+[![CodeQL](https://github.com/ownjoo/smb-mock/actions/workflows/codeql.yml/badge.svg)](https://github.com/ownjoo/smb-mock/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ownjoo/smb-mock/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ownjoo/smb-mock)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > A self-contained Docker stack — real MIT Kerberos KDC + real Samba file server — purpose-built for integration-testing SMB/CIFS clients **without** a Windows domain controller.
@@ -44,25 +45,9 @@ Default shares: **`testshare`** (read-write) · **`readonly`** (read-only)
 
 ## Architecture
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                       docker compose                       │
-│                                                            │
-│  ┌─────────────────────┐     ┌──────────────────────────┐  │
-│  │      mock-kdc       │     │        mock-smb          │  │
-│  │                     │     │                          │  │
-│  │  MIT Kerberos KDC   │     │  Samba smbd              │  │
-│  │  krb5kdc (PID 1)    │     │  SMB2 / SMB3 only        │  │
-│  │  kadmind (bg)       │     │  NTLMv2 + Kerberos +     │  │
-│  │                     │     │  anonymous (configurable)│  │
-│  │  :88   KDC          │     │  :445  file shares       │  │
-│  │  :8088 keytab API   │     │                          │  │
-│  └──────────┬──────────┘     └──────────────────────────┘  │
-│             │                               ▲              │
-│             └── /shared/krb5.keytab ──────►│              │
-│                   (Docker volume)          │              │
-└────────────────────────────────────────────────────────────┘
-```
+![Architecture: mock-kdc and mock-smb inside docker compose, connected via a shared krb5.keytab Docker volume](https://raw.githubusercontent.com/ownjoo/smb-mock/main/docs/architecture.svg)
+
+Both containers write/read `/shared/krb5.keytab` via a shared Docker volume — the KDC exports it at startup, Samba waits for it before binding port 445.
 
 Both containers are built on [Chainguard Wolfi](https://wolfi.dev/) — a minimal, purpose-built container OS with daily CVE patches and a near-zero known-vulnerability footprint.
 
@@ -72,8 +57,8 @@ Both containers are built on [Chainguard Wolfi](https://wolfi.dev/) — a minima
 
 | Container | Image | Role | Ports |
 |-----------|-------|------|-------|
-| `mock-kdc` | `speedimusmaximus/mock-kdc` | MIT Kerberos KDC — issues tickets, writes keytab | 88/tcp+udp, 8088/tcp |
-| `mock-smb` | `speedimusmaximus/mock-smb` | Samba smbd — serves SMB2/3 shares | 445/tcp |
+| `mock-kdc` | `ownjooorg/mock-kdc` | MIT Kerberos KDC — issues tickets, writes keytab | 88/tcp+udp, 8088/tcp |
+| `mock-smb` | `ownjooorg/mock-smb` | Samba smbd — serves SMB2/3 shares | 445/tcp |
 
 Samba waits for the KDC healthcheck (`GET /healthz`) before starting. Port 749 (kadmind) is **not** exposed on the host — it stays inside the Docker network.
 
@@ -301,25 +286,25 @@ All published images are signed and carry an attached SBOM and build provenance 
 
 ```bash
 cosign verify \
-  --certificate-identity-regexp="https://github.com/ownjoo-org/smb-mock" \
+  --certificate-identity-regexp="https://github.com/ownjoo/smb-mock" \
   --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
-  speedimusmaximus/mock-kdc:latest
+  ownjooorg/mock-kdc:latest
 ```
 
 ### Verify build provenance (GitHub)
 
 ```bash
-gh attestation verify oci://speedimusmaximus/mock-kdc:latest \
-  --owner ownjoo-org
+gh attestation verify oci://ownjooorg/mock-kdc:latest \
+  --owner ownjoo
 ```
 
 ### Fetch the SBOM
 
 ```bash
-cosign download sbom speedimusmaximus/mock-kdc:latest
+cosign download sbom ownjooorg/mock-kdc:latest
 ```
 
-SBOM files (SPDX JSON) are also attached to every [GitHub release](https://github.com/ownjoo-org/smb-mock/releases).
+SBOM files (SPDX JSON) are also attached to every [GitHub release](https://github.com/ownjoo/smb-mock/releases).
 
 ### GitHub Actions pinning
 
